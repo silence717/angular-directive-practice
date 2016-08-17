@@ -1,0 +1,22 @@
+{
+  "name": "angular-directive-pratice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silence717/angular-directive-pratice.git"
+  },
+  "author": "https://github.com/silence717",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/silence717/angular-directive-pratice/issues"
+  },
+  "homepage": "https://github.com/silence717/angular-directive-pratice#readme",
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}

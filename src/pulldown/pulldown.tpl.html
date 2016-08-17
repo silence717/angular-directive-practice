@@ -1,0 +1,7 @@
+<div class="ticket-order">
+    <span class="order-show" ng-click="vm.toggle($event);">
+        {{vm.currentOrderSort.orderTitle}}<i class="iconfont icon-sort icon-{{vm.currentOrderSort.orderSort}}"></i>
+    </span>
+    <div class="order-list" ng-show="vm.isOpened" ng-transclude>
+    </div>
+</div>
