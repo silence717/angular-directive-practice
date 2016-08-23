@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1468310003_9075694.css">
+    <title>pulldown directive示例</title>
+</head>
+<body ng-controller="AppController as vm">
+    <pull-down current-order-sort="vm.data[0]">
+        <ul>
+            <li ng-repeat="item in vm.data" ng-click="vm.orderSortClick(orderSort, $event);">{{item.orderTitle}}&nbsp;{{item.orderSortTitle}}</li>
+        </ul>
+    </pull-down>
+    <script src="../../node_modules/angular/angular.min.js"></script>
+    <script src="../../src/pulldown/pulldownDirective.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>

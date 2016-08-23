@@ -4,8 +4,8 @@
  */
 (function() {
     angular
-    .module('app', [])
-    .directive('pullDown', pullDown);
+        .module('app', [])
+        .directive('pullDown', pullDown);
 
     pullDown.$inject = ['$document'];
 
@@ -15,7 +15,7 @@
             scope: {
                 currentOrderSort: '='
             },
-            templateUrl: './src/app/ticket/list/pulldown.tpl.html',
+            templateUrl: './src/pulldown/pulldown.tpl.html',
             controller: function() {
                 var vm = this;
                 // 是否显示下拉
