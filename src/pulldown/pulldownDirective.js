@@ -2,9 +2,9 @@
  * @author [https://github.com/silence717]
  * @since  2016-08-17
  */
-(function() {
+(function(angular) {
     angular
-        .module('app', [])
+        .module('components.pullDown', [])
         .directive('pullDown', pullDown);
 
     pullDown.$inject = ['$document'];
@@ -13,30 +13,21 @@
         return {
             restrict: 'E',
             scope: {
-                currentOrderSort: '='
+                data: '=',
+                selectCallback: '&'
             },
-            templateUrl: './src/pulldown/pulldown.tpl.html',
-            controller: function() {
-                var vm = this;
-                // 是否显示下拉
-                vm.isOpened = false;
-                // 切换下拉
-                vm.toggle = function(event) {
-                    vm.isOpened = !vm.isOpened;
-                    event.stopPropagation();
-                };
-                // 关闭浮层
-                vm.onClose = function() {
-                    vm.isOpened = false;
-                };
-            },
-            link: function(scope, element, attrs, controller) {
+            templateUrl: '../../src/pulldown/pulldown.tpl.html',
+            controller: Controller,
+            replace: true,
+            controllerAs: 'vm',
+            bindToController: true,
+            link: function(scope, element, attrs, vm) {
                 var documentClickHandler = function(event) {
                     // 判断是否为外部点击
                     var isOutsideEvent = (element[0] !== event.target) && (element.find(event.target).length === 0);
                     if (isOutsideEvent) {
                         scope.$apply(function() {
-                            controller.onClose();
+                            vm.onClose();
                         });
                     }
                 };
@@ -44,11 +35,31 @@
                 scope.$on('$destroy', function() {
                     $document.off('click', documentClickHandler);
                 });
-            },
-            replace: true,
-            controllerAs: 'vm',
-            bindToController: true,
-            transclude: true
+            }
         };
     }
-})();
+    // controller逻辑
+    function Controller() {
+        var vm = this;
+        // 选中项
+        vm.selectData = vm.data[0];
+        // 是否显示下拉
+        vm.isOpened = false;
+        // 切换下拉
+        vm.toggle = function(event) {
+            vm.isOpened = !vm.isOpened;
+            event.stopPropagation();
+        };
+        // 关闭浮层
+        vm.onClose = function() {
+            vm.isOpened = false;
+        };
+        // 点击选择
+        vm.itemClick = function(item) {
+            vm.selectData = item;
+            vm.isOpened = !vm.isOpened;
+            vm.selectCallback({currentData: vm.selectData});
+        }
+    }
+    
+})(window.angular);

@@ -7,7 +7,7 @@
  */
 (function (angular) {
     angular
-        .module('app', []);
+        .module('app', ['components.pullDown']);
 })(window.angular);
 /**
  * controller
@@ -21,13 +21,17 @@
 
     function AppController() {
         var vm = this;
-        // 各个工单池共有排序
+        
         vm.data = [
-            {order: 'price', orderSort: 'asc', orderTitle: '价格', orderSortTitle: '从低到高'},
-            {order: 'price', orderSort: 'desc', orderTitle: '价格', orderSortTitle: '从高到低'},
-            {order: 'saleAmount', orderSort: 'asc', orderTitle: '销量', orderSortTitle: '从低到高'},
-            {order: 'saleAmount', orderSort: 'desc', orderTitle: '销量', orderSortTitle: '从高到低'}
+            {key: 'price', sort: 'asc', title: '价格', value: '从低到高'},
+            {key: 'price', sort: 'desc', title: '价格', value: '从高到低'},
+            {key: 'saleAmount', sort: 'asc', title: '销量', value: '从低到高'},
+            {key: 'saleAmount', sort: 'desc', title: '销量', value: '从高到低'}
         ];
+        vm.clk = function(currentData) {
+            console.log(currentData);
+            console.log('reload data from backend...');
+        }
 
     }
 
