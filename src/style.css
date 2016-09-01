@@ -1,3 +1,4 @@
-@import "assets/reset.css";
+@import "assets/css/reset.css";
 @import "pulldown/pulldown.css";
 @import "amount/amount.css";
+@import "voice/voice.css";
