@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1468310003_9075694.css">
+    <link rel="stylesheet" href="../../src/style.css">
+    <title>amount directive示例</title>
+    <style>
+        .amount {margin: 100px;}
+    </style>
+</head>
+<body ng-app="amountApp">
+    <amount max="30" model="0"></amount>
+    <script src="../../node_modules/angular/angular.min.js"></script>
+    <script src="../../src/amount/amount.directive.js"></script>
+    <script>
+        (function() {
+            angular.module('amountApp', ['components.amount']);
+        })();
+    </script>
+</body>
+</html>
