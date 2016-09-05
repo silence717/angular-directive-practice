@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/silence717/angular-directive-pratice#readme",
   "dependencies": {
-    "angular": "^1.5.8"
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1"
   }
 }
