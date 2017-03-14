@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../src/style.css">
+    <title>分页组件</title>
+    <style>
+        body {
+            padding: 50px;
+        }
+        voice {
+            margin-bottom: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body ng-controller="AppController as vm">
+
+    <pagination test="test" page-list="vm.pageList"
+            show-go="true"
+            show-page-size="true">
+    </pagination>
+    <script src="../../node_modules/angular/angular.min.js"></script>
+    <script src="../../src/pagination/pagination.directive.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>

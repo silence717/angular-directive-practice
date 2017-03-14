@@ -1,0 +1,27 @@
+<div class="pagination-style1">
+    <ul class="pagination-block">
+        <li class="item pre-btn"
+            ng-class="{'selected': vm.isFirst(), 'notSelected': !vm.isFirst()}"
+            ng-bind="'pre'"
+            ng-click="vm.goToPre()"></li>
+        <li class="item page-list"
+            ng-repeat="page in vm.makePages()"
+            ng-class="{'selected': vm.isSelected(page),'notSelected':!vm.isSelected(page)}"
+            ng-click="vm.selectPage(page)">{{page}}</li>
+        <li class="item next-btn"
+            ng-class="{'selected':vm.isLast(),'notSelected':!vm.isLast()}"
+            ng-bind="'next'"
+            ng-click="vm.goToNext()"></li>
+
+        <li class="inputPage" ng-if="vm.showGo">
+            <input class="go-input" type="number" ng-model="vm.goPageNum">
+            <button ng-click="vm.go()">Go</button>
+        </li>
+
+        <li class="select-num" ng-if="vm.showPageSize">
+            <select ng-model="vm.pageSize"
+                    ng-change="vm.changePageSize()"
+                    ng-options="pageSize for pageSize in vm.pageSizeList"></select>
+        </li>
+    </ul>
+</div>

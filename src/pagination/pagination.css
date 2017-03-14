@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.pagination-style1 {
+    margin-left: 20px;
+}
+.pagination-block {
+    display: flex;
+    list-style: none;
+    margin: 10px auto;
+    text-align: center;
+}
+.pagination-block .item {
+    background: #F6F6F6;
+    font-size: 14px;
+    min-width: 34px;
+    line-height: 24px;
+    border: 1px solid #bbb;
+    font-weight: normal;
+    margin-left: -1px;
+}
+.pagination-block .selected
+{
+    background: #666;
+    color: #fff;
+}
+.pagination-block .notSelected {
+    color: #666;
+    background: #F6F6F6;
+}
+.pagination-block .notSelected:hover {
+    cursor: pointer;
+    background: #fff;
+}
+.select-num {
+    margin-left: 10px;
+}
+.inputPage {
+    margin-left: 10px;
+}
+.inputPage .go-input {
+    width: 50px;
+    height: 18px;
+}
+
+
+
