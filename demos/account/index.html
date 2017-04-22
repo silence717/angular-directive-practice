@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../src/style.css">
+        <title>账号管理示例</title>
+        <style>
+            body {
+                padding: 100px;
+                background: #0083ba;
+            }
+        </style>
+    </head>
+    <body ng-controller="AppController as vm">
+        <account data="vm.data" content="vm.content" select-callback="vm.setContent(account)"></account>
+        <script src="../../node_modules/angular/angular.min.js"></script>
+        <script src="../../src/account/account.directive.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>

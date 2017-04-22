@@ -1,0 +1,46 @@
+.account-list {
+    overflow: hidden;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+.account-list .item {
+    float: left;
+    width: 98px;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #777;
+    cursor: pointer;
+    border: 1px solid #cddceb;
+    border-radius: 2px;
+    background: #fdfdfd;
+    overflow: hidden;
+}
+.account-list .item .icon-remove{
+    margin-left: 15px;
+    cursor: pointer;
+}
+.account-list .item.selected {
+    background:#eff7ff;
+    color: #0083be;
+}
+.account-list .item.selected .icon-remove {
+    cursor: not-allowed;
+}
+.account .account-content input{
+    border: 1px solid #d9d9d9;
+    width: 418px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+}
+.account .pull-down {
+    width: 408px;
+    height: auto;
+    max-height: 126px;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.13);
+    padding: 10px 15px;
+}
