@@ -12,7 +12,7 @@
         </style>
     </head>
     <body ng-controller="AppController as vm">
-        <account data="vm.data" content="vm.content" select-callback="vm.setContent(account)"></account>
+        <account data="vm.data" content="vm.content" select-callback="vm.setContent(historyContent,inputContent)"></account>
         <script src="../../node_modules/angular/angular.min.js"></script>
         <script src="../../src/account/account.directive.js"></script>
         <script src="./index.js"></script>

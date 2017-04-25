@@ -1,6 +1,6 @@
 /**
  * @author  https://github.com/silence717
- * @desc []
+ * @desc [test account manager]
  * @date 2017-04-20
  */
 (function () {
@@ -31,63 +31,119 @@
 		var vm = this;
 		
 		vm.isOpened = false;
-		vm.contentList = [];
-		init();
+		initData();
 		
-		// 点击单个账号
-		this.itemClick = function (item) {
+		/**
+		 * item click
+		 * @param item
+		 */
+		vm.itemClick = function (item) {
 			if (item.isSelected) {
-				var index = this.contentList.indexOf(item.value);
-				this.contentList.splice(index, 1);
+				var index = vm.contentList.indexOf(item.value);
+				vm.contentList.splice(index, 1);
 			} else {
-				this.contentList.push(item.value);
+				vm.contentList.push(item.value);
 			}
 			item.isSelected = !item.isSelected;
-			// this.selectCallback({account: item});
+			// resolveBackData();
 		};
-		// 删除账号
-		this.remove = function (item, event) {
+		/**
+		 * remove account
+		 * @param item
+		 * @param event
+		 * @returns {boolean}
+		 */
+		vm.remove = function (item, event) {
 			event.stopPropagation();
 			if (item.isSelected) {
 				return false;
 			}
-			var index = this.accountData.indexOf(item);
-			this.accountData.splice(index, 1);
+			var index = vm.accountData.indexOf(item);
+			vm.accountData.splice(index, 1);
+			resolveBackData();
 		};
 		// 显示隐藏下拉列表
-		this.toggle = function (event) {
-			this.isOpened = !this.isOpened;
+		vm.toggle = function (event) {
+			vm.isOpened = !vm.isOpened;
 			event.stopPropagation();
 		};
-		// 监听input值变化
-		$scope.$watch('vm.content', function (newValue) {
-			if (newValue.length === 0) {
-				return false;
-			}
-			var data = newValue.split(',');
-			vm.accountData.forEach(function (item) {
-				if (item.isSelected === true && data.indexOf(item.value) === -1) {
+		/**
+		 * select all click
+		 */
+		vm.checkAllClick = function() {
+			if (vm.checkAll) {
+				vm.accountData.forEach(function(item) {
+					if(!item.isSelected) {
+						item.isSelected = true;
+						vm.contentList.push(item.value);
+					}
+				});
+			} else {
+				vm.accountData.forEach(function(item) {
 					item.isSelected = false;
-				}
-				if (item.isSelected === false && data.indexOf(item.value) !== -1) {
-					item.isSelected = true;
-					vm.contentList.push(item.value);
-				}
-			});
-		});
-		// 监听数据变化
-		$scope.$watchCollection('vm.contentList', function (newValue) {
-			if (newValue.length === 0) {
-				return false;
+					var index = vm.contentList.indexOf(item.value);
+					vm.contentList.splice(index, 1);
+				});
 			}
-			vm.content = vm.contentList.join(',');
-		});
+			resolveBackData();
+		};
 		
-		function init() {
+		function resolveBackData() {
+			var historyContent = [];
+			vm.accountData.forEach(function (item) {
+				historyContent.push(item.value);
+			});
+			vm.selectCallback({historyContent: historyContent.join(','), inputContent: vm.contentList.join(',')});
+		}
+		
+		/**
+		 * init watch data
+		 */
+		function initWatchData() {
+			// 监听input值变化
+			$scope.$watch('vm.content', function (newValue) {
+				if (newValue.length === 0) {
+					return false;
+				}
+				vm.contentList = newValue.split(',');
+				vm.accountData.forEach(function (item) {
+					if (item.isSelected === true && vm.contentList.indexOf(item.value) === -1) {
+						item.isSelected = false;
+					}
+					if (item.isSelected === false && vm.contentList.indexOf(item.value) !== -1) {
+						item.isSelected = true;
+					}
+				});
+				resolveBackData();
+			});
+			// 监听选中数组变化
+			$scope.$watchCollection('vm.contentList', function (newValue) {
+				vm.content = newValue.join(',');
+			});
+			// 监测 accountData 控制全选
+			$scope.$watch('vm.accountData', function (newValue) {
+				// 标记选中的有几个
+				var count = 0;
+				newValue.forEach(function (item) {
+					if (item.isSelected) {
+						count++;
+					}
+				});
+				if (count === vm.accountData.length) {
+					vm.checkAll = 1;
+				} else {
+					vm.checkAll = 0;
+				}
+			}, true);
+		}
+		
+		function initData() {
+			vm.contentList = [];
 			vm.accountData = [];
 			vm.data.split(',').forEach(function(item) {
 				vm.accountData.push({value: item, isSelected: false})
 			});
+			initWatchData();
 		}
 	}
 	

@@ -20,7 +20,15 @@
 		.controller('AppController', AppController);
 	function AppController() {
 		var vm = this;
-		vm.content = '';
+		vm.content = '13712345678,13734125678,13712367834,13712567812';
 		vm.data = "13712345678,13734125678,13712367834,13712567812";
+		vm.setContent = function (historyContent, inputContent) {
+			console.log('*********history content***********');
+			console.log(historyContent);
+			console.log('====================');
+			console.log('*********input content***********');
+			console.log(inputContent);
+			
+		}
 	}
 })(window.angular);

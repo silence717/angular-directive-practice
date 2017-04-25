@@ -4,7 +4,7 @@
     </div>
     <div class="pull-down" ng-if="vm.isOpened">
         <label>
-            <input type="checkbox">全选
+            <input type="checkbox" ng-model="vm.checkAll" ng-true-value="1" ng-false-value="0" ng-click="vm.checkAllClick();">全选
         </label>
         <div class="account-list">
             <div class="item" ng-class="{selected: item.isSelected}" ng-repeat="item in vm.accountData" ng-click="vm.itemClick(item);">
