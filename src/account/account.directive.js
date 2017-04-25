@@ -8,7 +8,8 @@
 		.module('components.account', [])
 		.directive('account', account);
 	
-	function account() {
+	account.$inject = ['$document'];
+	function account($document) {
 		var directive = {
 			restrict: 'E',
 			scope: {
@@ -20,7 +21,32 @@
 			controller: Controller,
 			controllerAs: 'vm',
 			bindToController: true,
-			replace: true
+			replace: true,
+			link: function(scope, element, attrs, vm) {
+				/**
+				 * 判断是否为子元素
+				 * @returns {boolean}
+				 */
+				function isChildElement() {
+					var className = event.target.className.replace(/^ng-/, '').split(' ')[0];
+					var length = element[0].querySelectorAll('.' + className).length;
+					return length === 0;
+				}
+				var documentClickHandler = function(event) {
+					if (vm.isOpened) {
+						var isOutsideEvent = (element[0] !== event.target) && isChildElement();
+						if (isOutsideEvent) {
+							scope.$apply(function() {
+								vm.isOpened = false;
+							});
+						}
+					}
+				};
+				$document.off('click').on('click', documentClickHandler);
+				scope.$on('$destroy', function() {
+					$document.off('click', documentClickHandler);
+				});
+			}
 		};
 		return directive;
 	}
@@ -62,9 +88,12 @@
 			vm.accountData.splice(index, 1);
 			resolveBackData();
 		};
-		// 显示隐藏下拉列表
-		vm.toggle = function (event) {
-			vm.isOpened = !vm.isOpened;
+		/**
+		 * show pull down
+		 * @param event
+		 */
+		vm.showList = function (event) {
+			vm.isOpened = true;
 			event.stopPropagation();
 		};
 		/**

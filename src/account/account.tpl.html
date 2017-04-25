@@ -1,14 +1,12 @@
 <div class="account">
     <div class="account-content">
-        <input type="text" placeholder="不同的测试账号请使用','隔开" ng-model="vm.content" ng-click="vm.toggle($event)">
+        <input type="text" placeholder="不同的测试账号请使用','隔开" ng-model="vm.content" ng-click="vm.showList($event)">
     </div>
     <div class="pull-down" ng-if="vm.isOpened">
-        <label>
-            <input type="checkbox" ng-model="vm.checkAll" ng-true-value="1" ng-false-value="0" ng-click="vm.checkAllClick();">全选
-        </label>
+        <input type="checkbox" class="checkbox" ng-model="vm.checkAll" ng-true-value="1" ng-false-value="0" ng-click="vm.checkAllClick();">全选
         <div class="account-list">
             <div class="item" ng-class="{selected: item.isSelected}" ng-repeat="item in vm.accountData" ng-click="vm.itemClick(item);">
-                <span ng-bind="item.value"></span>
+                <span ng-bind="item.value" class="item-value"></span>
                 <a class="icon-remove" ng-disabled="item.isSelected" ng-click="vm.remove(item,$event);">X</a>
             </div>
         </div>
