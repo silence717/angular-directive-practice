@@ -37,6 +37,7 @@
     padding: 0 10px;
 }
 .account .pull-down {
+    position: absolute;
     width: 408px;
     height: auto;
     max-height: 126px;
